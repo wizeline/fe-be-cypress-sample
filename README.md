@@ -1,9 +1,13 @@
 # qa-slack-poc
 
-# Install Cypress
+# Install dependencies
 
-npm install cypress --save-dev
+npm install
 
-# Run Cypress
+# Open Cypress tests in a UI
 
-./node_modules/.bin/cypress open
+npm run open-test
+
+# Run Cypress tests in terminal and generate html report (report is going to be generated in mochawesome-report folder)
+
+npm run test
