@@ -8,6 +8,6 @@ npm install
 
 npm run open-test
 
-# Run Cypress tests in terminal and generate html report
+# Run Cypress tests in terminal and generate html report (report is going to be generated in mochawesome-report folder)
 
 npm run test
