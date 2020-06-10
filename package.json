@@ -4,10 +4,11 @@
   "description": "# Install Cypress",
   "main": "index.js",
   "dependencies": {
-    "cypress": "^4.7.0",
     "mochawesome": "^6.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress": "^4.8.0"
+  },
   "scripts": {
     "test": "./node_modules/.bin/cypress run",
     "open-test": "./node_modules/.bin/cypress open"
