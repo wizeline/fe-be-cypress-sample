@@ -1,3 +1,3 @@
-export const URL = Cypress.env('url');
-export const LOGIN_USERNAME = Cypress.env('loginUsername');
-export const LOGIN_PASSWORD = Cypress.env('loginPassword');
+export const SLACK_URL = Cypress.env('SLACK_URL');
+export const LOGIN_USERNAME = Cypress.env('LOGIN_USERNAME');
+export const LOGIN_PASSWORD = Cypress.env('LOGIN_PASSWORD');

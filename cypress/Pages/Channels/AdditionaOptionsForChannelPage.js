@@ -1,3 +1,2 @@
-class AdditionalOptionsForChannelPage{
-
-} export default AdditionalOptionsForChannelPage;
+class AdditionalOptionsForChannelPage {}
+export default AdditionalOptionsForChannelPage;
