@@ -6,6 +6,8 @@ import {
   LOGIN_PASSWORD,
 } from '../../Utils/Constants';
 
+const faker = require('faker');
+
 describe('Test Cases regarding the Sending/Updating/Deleting Messages Functionality', () => {
   before(() => {
     cy.visit(SLACK_URL);
@@ -14,8 +16,7 @@ describe('Test Cases regarding the Sending/Updating/Deleting Messages Functional
 
   it('Send message', () => {
     const messages = new ChannelPage();
-    var faker = require('faker');
-    var message = faker.random.word();
+    const message = faker.random.word(); // Use faker js to send random messages.
     messages.sendMessage(message);
   });
 });
