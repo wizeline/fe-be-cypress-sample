@@ -8,11 +8,8 @@ class LeftNavigationBar {
   }
 
   openCreateChannelFromChannelSubMenu() {
-    this.btnAddChannel()
-      .click()
-      .then(() => {
-        this.addChannelSubMenuOption().click();
-      });
+    this.btnAddChannel().click();
+    this.addChannelSubMenuOption().click();
   }
 }
 export default LeftNavigationBar;

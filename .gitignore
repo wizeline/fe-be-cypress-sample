@@ -1,7 +1,6 @@
 node_modules
 cypress/plugins/
 cypress/support/
-package-lock.json
 .DS_Store
 cypress/videos/
 cypress.env.json
