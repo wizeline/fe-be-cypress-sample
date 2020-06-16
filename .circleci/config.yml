@@ -4,7 +4,7 @@ default_config: &default_config
   working_directory: ~/qa-slack-poc
 
 orbs:
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@1.24.0
 
 pr-review_filters: &pr-review_filters
   branches:
