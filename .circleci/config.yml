@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
-      -run: npm run cy:verify
+      - run: npm run cy:verify
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
-      -run: npm run cy:verify
+      - run: npm run cy:verify
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
