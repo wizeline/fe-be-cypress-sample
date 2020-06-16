@@ -13,7 +13,7 @@ production_filters: &production_filters
     only:
       - master
 
-version: 2.1
+version: 2
 jobs:
   run_lint:
     <<: *default_config
@@ -50,7 +50,7 @@ jobs:
           command: npm run test
 
 workflows:
-  version: 2.1
+  version: 2
   pre-commit-checks:
     jobs:
       - run_lint:
