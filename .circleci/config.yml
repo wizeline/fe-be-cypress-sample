@@ -1,3 +1,5 @@
+version: 2.1
+
 default_config: &default_config
   docker:
     - image: circleci/node:latest-browsers
@@ -13,7 +15,6 @@ production_filters: &production_filters
     only:
       - master
 
-version: 2
 jobs:
   run_lint:
     <<: *default_config
@@ -50,7 +51,7 @@ jobs:
           command: npm run test
 
 workflows:
-  version: 2
+  version: 2.1
   pre-commit-checks:
     jobs:
       - run_lint:
