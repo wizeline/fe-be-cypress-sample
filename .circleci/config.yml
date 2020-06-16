@@ -8,7 +8,7 @@ default_config: &default_config
 pr-review_filters: &pr-review_filters
   branches:
     only:
-      - /scenario*/
+      - /scenario/
 
 production_filters: &production_filters
   branches:
@@ -16,7 +16,7 @@ production_filters: &production_filters
       - master
 
 jobs:
-  run_lint:
+  Run_Lint:
     <<: *default_config
     steps:
       - checkout
@@ -34,7 +34,7 @@ jobs:
           name: Run ESLint
           command: npm run lint
 
-  run_unit_test:
+  Run_Tests:
     <<: *default_config
     steps:
       - checkout
@@ -56,18 +56,18 @@ workflows:
   version: 2
   pre-commit-checks:
     jobs:
-      - run_lint:
+      - Run_Lint:
           filters: *pr-review_filters
-      - run_unit_test:
+      - Run_Tests:
           requires:
             - run_lint
           filters: *pr-review_filters
   
   post-commit-checks_production:
     jobs:
-      - run_lint:
+      - Run_Lint:
           filters: *production_filters
-      - run_unit_test:
+      - Run_Tests:
           requires:
             - run_lint
           filters: *production_filters
