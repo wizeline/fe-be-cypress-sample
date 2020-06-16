@@ -1,17 +1,19 @@
 {
   "env": {
-      "browser": true,
-      "es2020": true,
-      "cypress/globals": true
+    "browser": true,
+    "es2020": true,
+    "cypress/globals": true
   },
   "extends": [
-      "airbnb-base", "plugin:prettier/recommended", "plugin:cypress/recommended"
+    "airbnb-base",
+    "plugin:prettier/recommended",
+    "plugin:cypress/recommended"
   ],
   "parserOptions": {
-      "ecmaVersion": 11,
-      "sourceType": "module"
+    "ecmaVersion": 11,
+    "sourceType": "module"
   },
-  "plugins": ["cypress","prettier"],
+  "plugins": ["cypress", "prettier"],
   "rules": {
     "prettier/prettier": "error",
     "cypress/no-assigning-return-values": "error",
@@ -20,5 +22,12 @@
     "cypress/no-force": "warn",
     "cypress/no-async-tests": "error",
     "class-methods-use-this": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
   }
 }

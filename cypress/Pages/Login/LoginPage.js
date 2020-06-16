@@ -4,7 +4,7 @@ class LoginPage {
   }
 
   txtLoginPassword() {
-    return cy.get('[data-qa="login_password"]').clear(); // Cleans and returns the text field to be ready to use.
+    return cy.get('[data-qa="login_password"]').clear({ force: true }); // Cleans and returns the text field to be ready to use.
   }
 
   btnSignInButton() {
@@ -14,7 +14,7 @@ class LoginPage {
   loginToSlack(username, password) {
     this.txtLoginEmail().type(username);
     this.txtLoginPassword().type(password);
-    this.btnSignInButton().click();
+    this.btnSignInButton().click({ force: true });
   }
 }
 export default LoginPage;
