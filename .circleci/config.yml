@@ -60,7 +60,25 @@ workflows:
           requires:
             - Run_Lint
           filters: *pr-review_filters
+
+  post-commit-checks:
+    jobs:
+      - Run_Lint:
+          filters: *pr-review_filters
+      - Run_Tests:
+          requires:
+            - Run_Lint
+          filters: *pr-review_filters
   
+  pre-commit-checks_production:
+    jobs:
+      - Run_Lint:
+          filters: *production_filters
+      - Run_Tests:
+          requires:
+            - Run_Lint
+          filters: *production_filters
+
   post-commit-checks_production:
     jobs:
       - Run_Lint:
