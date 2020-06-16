@@ -8,7 +8,7 @@ default_config: &default_config
 pr-review_filters: &pr-review_filters
   branches:
     only:
-      - /scenario/
+      - /scenario.*/
 
 production_filters: &production_filters
   branches:
