@@ -4,6 +4,7 @@
   "description": "# Install Cypress",
   "main": "index.js",
   "dependencies": {
+    "faker": "^4.1.0",
     "mochawesome": "^6.1.1"
   },
   "devDependencies": {
