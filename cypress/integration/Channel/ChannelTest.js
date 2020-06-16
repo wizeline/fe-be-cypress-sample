@@ -2,6 +2,8 @@ import LoginPage from '../../Pages/Login/LoginPage';
 import LeftNavigationBar from '../../Pages/LeftNavigationBar/LeftNavigationBar';
 import CreateChannelModal from '../../Pages/Channels/CreateChannelModal';
 import AddPeopleToChannelModal from '../../Pages/Channels/AddPeopleToChannelModal';
+import ChannelPage from '../../Pages/Channels/ChannelPage';
+import ChannelDetailsPanel from '../../Pages/Channels/ChannelDetailsPanel';
 import {
   SLACK_URL,
   LOGIN_USERNAME,
@@ -9,13 +11,15 @@ import {
 } from '../../Utils/Constants';
 
 describe('Test Cases regarding the Channel Functionality', () => {
+  let channelName;
+
   before(() => {
     cy.visit(SLACK_URL);
     new LoginPage().loginToSlack(LOGIN_USERNAME, LOGIN_PASSWORD);
   });
 
   it('Create a new Channel', () => {
-    const channelName = String(new Date().getTime()); // This can also be retreived from a json file
+    channelName = String(new Date().getTime()); // This can also be retreived from a json file
     const addPeopleToChannelModal = new AddPeopleToChannelModal();
 
     new LeftNavigationBar().openCreateChannelFromChannelSubMenu();
@@ -25,5 +29,20 @@ describe('Test Cases regarding the Channel Functionality', () => {
       expect(incommingText).to.be.equal(channelName); // Check that the name matches with the one specified
     });
     addPeopleToChannelModal.closeAddPeopleToChannelModal();
+  });
+
+  it.only('Add people to Channel)', () => {
+    const channelDetailsPanel = new ChannelDetailsPanel();
+    const addPeopleToChannelModal = new AddPeopleToChannelModal();
+    const leftNavigationBar = new LeftNavigationBar();
+    const channelPage = new ChannelPage();
+
+    leftNavigationBar.openChannel('marco');
+    channelPage.openChannelDetails();
+
+    channelDetailsPanel.openAddUserModal();
+    addPeopleToChannelModal.addUserToChannel('test');
+    // channelDetailsPanel.clickOnSection('Members');
+    // expect(channelDetailsPanel.checkIfUserIsAMember('test')).to.be.equal(true);
   });
 });
