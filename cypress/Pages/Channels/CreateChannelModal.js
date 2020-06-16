@@ -13,7 +13,10 @@ class CreateChannelModal {
     return cy.get('[data-qa="channel_create_modal_cta"]');
   }
 
-  createNewChannel(incommingChannelName, incommingChannelDescription = 'Default: Created by Automation') {
+  createNewChannel(
+    incommingChannelName,
+    incommingChannelDescription = 'Default: Created by Automation',
+  ) {
     this.txtChannelName().type(incommingChannelName, { force: true });
     this.txtChannelDescription().type(incommingChannelDescription);
     this.btnCreateChannel().click();
