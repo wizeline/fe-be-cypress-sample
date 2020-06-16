@@ -60,7 +60,7 @@ workflows:
           filters: *pr-review_filters
       - Run_Tests:
           requires:
-            - run_lint
+            - Run_Lint
           filters: *pr-review_filters
   
   post-commit-checks_production:
@@ -69,5 +69,5 @@ workflows:
           filters: *production_filters
       - Run_Tests:
           requires:
-            - run_lint
+            - Run_Lint
           filters: *production_filters
