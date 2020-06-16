@@ -20,7 +20,7 @@
     "prettier": "^1.19.1"
   },
   "scripts": {
-    "test": "./node_modules/.bin/cypress run",
+    "test": "./node_modules/.bin/cypress run --record --key 008be352-1c31-44b1-8003-8ea93d75c156",
     "open-test": "./node_modules/.bin/cypress open",
     "lint": "eslint . -c .eslintrc.json --ext js"
   },
