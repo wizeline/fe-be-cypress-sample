@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 
 default_config: &default_config
   docker:
@@ -51,7 +51,7 @@ jobs:
           command: npm run test
 
 workflows:
-  version: 2.1
+  version: 2
   pre-commit-checks:
     jobs:
       - run_lint:
