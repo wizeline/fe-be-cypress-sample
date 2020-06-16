@@ -4,6 +4,10 @@ class ChannelPage {
     return cy.get('[data-team-id="T015A1WC8V7"]').clear(); // Cleans and returns the text field to be ready to use.
   }
 
+  btnChannelDetails() {
+    return cy.get('[data-qa="channel-details"]');
+  }
+
   btnSendMessageButton() {
     return cy.get('[data-qa="texty_send_button"]');
   }
@@ -21,6 +25,10 @@ class ChannelPage {
     this.inputMessageContent().then((selector) => {
       callback(selector.text());
     });
+  }
+
+  openChannelDetails() {
+    this.btnChannelDetails().click();
   }
 }
 export default ChannelPage;
