@@ -8,9 +8,19 @@ class ChannelPage {
     return cy.get('[data-qa="texty_send_button"]');
   }
 
+  inputMessageContent() {
+    return cy.get('.p-rich_text_section');
+  }
+
   sendMessage(message) {
     this.txtMessageInput().type(message);
     this.btnSendMessageButton().click();
+  }
+
+  getMessageSent(callback) {
+    this.inputMessageContent().then((selector) => {
+      callback(selector.text());
+    });
   }
 }
 export default ChannelPage;
