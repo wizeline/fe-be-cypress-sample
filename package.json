@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/cypress run",
-    "open-test": "./node_modules/.bin/cypress open"
+    "open-test": "./node_modules/.bin/cypress open",
+    "lint": "eslint . -c .eslintrc.json --ext js"
   },
   "repository": {
     "type": "git",

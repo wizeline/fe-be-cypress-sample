@@ -1,0 +1,71 @@
+version: 2
+
+default_config: &default_config
+  docker:
+    - image: circleci/node:latest-browsers
+  working_directory: ~/qa-slack-poc
+
+pr-review_filters: &pr-review_filters
+  branches:
+    only:
+      - /scenario.*/
+
+production_filters: &production_filters
+  branches:
+    only:
+      - master
+
+jobs:
+  Run_Lint:
+    <<: *default_config
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm ci
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run ESLint
+          command: npm run lint
+
+  Run_Tests:
+    <<: *default_config
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm ci
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run Tests
+          command: npm run test
+
+workflows:
+  version: 2
+  pre-commit-checks:
+    jobs:
+      - Run_Lint:
+          filters: *pr-review_filters
+      - Run_Tests:
+          requires:
+            - Run_Lint
+          filters: *pr-review_filters
+  
+  post-commit-checks_production:
+    jobs:
+      - Run_Lint:
+          filters: *production_filters
+      - Run_Tests:
+          requires:
+            - Run_Lint
+          filters: *production_filters
