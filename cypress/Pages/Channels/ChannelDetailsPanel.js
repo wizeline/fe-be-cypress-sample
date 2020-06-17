@@ -13,7 +13,7 @@ class ChannelDetailsPanel {
   }
 
   openAddUserModal() {
-    return this.btnAddUser().click();
+    this.btnAddUser().click();
   }
 
   clickOnSection(incommingSectionName) {
