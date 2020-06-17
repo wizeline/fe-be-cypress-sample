@@ -41,7 +41,7 @@ class AddPeopleToChannelModal {
         cy.wrap(user).click();
       }
     });
-    return this.btnDone().click();
+    this.btnDone().click();
   }
 }
 export default AddPeopleToChannelModal;
