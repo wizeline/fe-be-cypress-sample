@@ -5,7 +5,7 @@ class ChannelDetailsPanel {
   }
 
   lstChannelDetailsSections() {
-    return cy.get('[data-qa="channel-details-section-title"]');
+    return cy.get('[data-qa="channel-details-section-title"] span');
   }
 
   lstChannelMemberList() {
@@ -13,7 +13,7 @@ class ChannelDetailsPanel {
   }
 
   openAddUserModal() {
-    this.btnAddUser().click();
+    return this.btnAddUser().click();
   }
 
   clickOnSection(incommingSectionName) {
@@ -25,15 +25,12 @@ class ChannelDetailsPanel {
   }
 
   checkIfUserIsAMember(incommingUserName, callback) {
-    let found;
+    this.clickOnSection('Members');
     this.lstChannelMemberList().each((member) => {
       if (member.text() === incommingUserName) {
-        found = true;
-      } else {
-        found = false;
+        callback(true);
       }
     });
-    callback(found);
   }
 }
 export default ChannelDetailsPanel;
