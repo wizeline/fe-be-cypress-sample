@@ -28,7 +28,13 @@ class ChannelPage {
   }
 
   openChannelDetails() {
-    this.btnChannelDetails().click();
+    this.btnChannelDetails()
+      .invoke('attr', 'aria-expanded')
+      .then((opened) => {
+        if (opened === 'false') {
+          this.btnChannelDetails().click();
+        }
+      });
   }
 }
 export default ChannelPage;
