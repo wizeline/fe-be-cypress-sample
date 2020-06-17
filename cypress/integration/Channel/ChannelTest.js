@@ -12,8 +12,9 @@ import {
 
 describe('Test Cases regarding the Channel Functionality', () => {
   let channelName;
+  const userName = 'test';
 
-  before(() => {
+  beforeEach(() => {
     cy.visit(SLACK_URL);
     new LoginPage().loginToSlack(LOGIN_USERNAME, LOGIN_PASSWORD);
   });
@@ -31,18 +32,21 @@ describe('Test Cases regarding the Channel Functionality', () => {
     addPeopleToChannelModal.closeAddPeopleToChannelModal();
   });
 
-  it.only('Add people to Channel)', () => {
+  it('Add people to Channel)', () => {
     const channelDetailsPanel = new ChannelDetailsPanel();
     const addPeopleToChannelModal = new AddPeopleToChannelModal();
     const leftNavigationBar = new LeftNavigationBar();
     const channelPage = new ChannelPage();
 
-    leftNavigationBar.openChannel('marco');
-    channelPage.openChannelDetails();
+    leftNavigationBar.openChannel(channelName); // Opens the desired channel
+    channelPage.openChannelDetails(); // Opens the channel details
 
-    channelDetailsPanel.openAddUserModal();
-    addPeopleToChannelModal.addUserToChannel('test');
-    // channelDetailsPanel.clickOnSection('Members');
-    // expect(channelDetailsPanel.checkIfUserIsAMember('test')).to.be.equal(true);
+    channelDetailsPanel.openAddUserModal().then(() => {
+      addPeopleToChannelModal.addUserToChannel(userName).then(() => {
+        channelDetailsPanel.checkIfUserIsAMember(userName, (found) => {
+          expect(found).to.equal(true);
+        });
+      });
+    });
   });
 });
