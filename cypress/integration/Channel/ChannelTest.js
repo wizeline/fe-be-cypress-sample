@@ -40,13 +40,10 @@ describe('Test Cases regarding the Channel Functionality', () => {
 
     leftNavigationBar.openChannel(channelName); // Opens the desired channel
     channelPage.openChannelDetails(); // Opens the channel details
-
-    channelDetailsPanel.openAddUserModal().then(() => {
-      addPeopleToChannelModal.addUserToChannel(userName).then(() => {
-        channelDetailsPanel.checkIfUserIsAMember(userName, (found) => {
-          expect(found).to.equal(true);
-        });
-      });
+    channelDetailsPanel.openAddUserModal(); // Open the Add user Modal
+    addPeopleToChannelModal.addUserToChannel(userName); // Adds the user to the group
+    channelDetailsPanel.checkIfUserIsAMember(userName, (found) => {
+      expect(found).to.equal(true); // Scan the list of members, if found return true and compare
     });
   });
 });
