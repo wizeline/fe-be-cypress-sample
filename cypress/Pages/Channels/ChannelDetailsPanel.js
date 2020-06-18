@@ -4,6 +4,10 @@ class ChannelDetailsPanel {
     return cy.get('[data-qa="add-user"]');
   }
 
+  btnMoreDetails() {
+    return cy.get('[data-qa="channel-details-action"]');
+  }
+
   lstChannelDetailsSections() {
     return cy.get('[data-qa="channel-details-section-title"] span');
   }
@@ -12,16 +16,8 @@ class ChannelDetailsPanel {
     return cy.get('[data-qa="member-entity__primary-name"]');
   }
 
-  openAddUserModal() {
-    this.btnAddUser().click();
-  }
-
-  clickOnSection(incommingSectionName) {
-    this.lstChannelDetailsSections().each((section) => {
-      if (section.text() === incommingSectionName) {
-        section.click();
-      }
-    });
+  lstMoreDetailsMenu() {
+    return cy.get('[data-qa="menu_item_button"] div');
   }
 
   checkIfUserIsAMember(incommingUserName, callback) {
@@ -31,6 +27,32 @@ class ChannelDetailsPanel {
         callback(true);
       }
     });
+  }
+
+  leaveChannel() {
+    this.btnMoreDetails().click();
+    this.clickOnMoreDetailsMenuOption('Leave #');
+  }
+
+  openChannelAdditionalOptionsModal() {
+    this.btnMoreDetails().click();
+    this.clickOnMoreDetailsMenuOption('Additional options');
+  }
+
+  openAddUserModal() {
+    this.btnAddUser().click();
+  }
+
+  clickOnSection(incommingSectionName) {
+    this.lstChannelDetailsSections()
+      .contains(incommingSectionName)
+      .click();
+  }
+
+  clickOnMoreDetailsMenuOption(incommingMenuOption) {
+    this.lstMoreDetailsMenu()
+      .contains(incommingMenuOption)
+      .click();
   }
 }
 export default ChannelDetailsPanel;
