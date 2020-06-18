@@ -1,6 +1,6 @@
 class LeftNavigationBar {
   btnAddChannel() {
-    return cy.get('[data-qa="channel_sidebar__plus__channels"]');
+    return cy.get('[data-qa="channel_sidebar_name_add_channel"]');
   }
 
   addChannelSubMenuOption() {
@@ -11,16 +11,19 @@ class LeftNavigationBar {
     return cy.get('[data-qa*="channel_sidebar_name"]');
   }
 
-  openCreateChannelFromChannelSubMenu() {
+  openChannelBrowser() {
     this.btnAddChannel().click();
-    this.addChannelSubMenuOption().click();
   }
 
   openChannel(incommingChannelName) {
+    this.lstChannelNames()
+      .contains(incommingChannelName)
+      .click();
+  }
+
+  getAllChannelNames(callback) {
     this.lstChannelNames().each((channel) => {
-      if (channel.text() === incommingChannelName) {
-        channel.click();
-      }
+      callback(channel.text());
     });
   }
 }
