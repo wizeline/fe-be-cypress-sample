@@ -11,12 +11,16 @@ class AddPeopleToChannelModal {
     return cy.get('[data-qa="invite_to_workspace_submit_button"]');
   }
 
+  btnSkipForNow() {
+    return cy.get('[data-qa="invite_to_workspace_skip_button"]');
+  }
+
   rdioAddSpecificPeople() {
     return cy.get('[data-qa="add-specific-members-option"]');
   }
 
   txtFindUserName() {
-    return cy.get('[data-qa="invite_to_workspace_select-input"]');
+    return cy.get('[data-qa="invite_to_workspace_select-input"]').clear();
   }
 
   lstSearchResult() {
@@ -24,7 +28,8 @@ class AddPeopleToChannelModal {
   }
 
   closeAddPeopleToChannelModal() {
-    this.btnCloseModal().click();
+    this.txtFindUserName().click();
+    this.btnSkipForNow().click();
   }
 
   getChannelName(callback) {
@@ -34,13 +39,10 @@ class AddPeopleToChannelModal {
   }
 
   addUserToChannel(incommingUserName) {
-    // this.rdioAddSpecificPeople().click();
     this.txtFindUserName().type(incommingUserName);
-    this.lstSearchResult().each((user) => {
-      if (user.text() === incommingUserName) {
-        cy.wrap(user).click();
-      }
-    });
+    this.lstSearchResult()
+      .contains(incommingUserName)
+      .click();
     this.btnDone().click();
   }
 }
