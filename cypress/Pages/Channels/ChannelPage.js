@@ -12,8 +12,16 @@ class ChannelPage {
     return cy.get('[data-qa="texty_send_button"]');
   }
 
+  btnJoinChannelButton() {
+    return cy.get('[data-qa="message-pane-input-preview-join-channel"]');
+  }
+
   inputMessageContent() {
     return cy.get('.p-rich_text_section');
+  }
+
+  lblChannelName() {
+    return cy.get('[data-qa="channel_name"]');
   }
 
   sendMessage(message) {
@@ -27,7 +35,7 @@ class ChannelPage {
     });
   }
 
-  openChannelDetails() {
+  openChannelDetailsPanel() {
     this.btnChannelDetails()
       .invoke('attr', 'aria-expanded')
       .then((opened) => {
@@ -35,6 +43,26 @@ class ChannelPage {
           this.btnChannelDetails().click();
         }
       });
+  }
+
+  closeChannelDetailsPanel() {
+    this.btnChannelDetails()
+      .invoke('attr', 'aria-expanded')
+      .then((opened) => {
+        if (opened === 'true') {
+          this.btnChannelDetails().click();
+        }
+      });
+  }
+
+  getCurrentChannelName(callback) {
+    this.lblChannelName().then((selector) => {
+      callback(selector.text());
+    });
+  }
+
+  clickOnJoinChannelButton() {
+    this.btnJoinChannelButton().click();
   }
 }
 export default ChannelPage;
