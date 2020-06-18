@@ -35,6 +35,7 @@ jobs:
 
   Run_Tests:
     <<: *default_config
+    parallelism: 4
     steps:
       - checkout
       - restore_cache:
