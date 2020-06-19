@@ -28,7 +28,7 @@ jobs:
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
-            - .cache/
+            - ./cache
       - run:
           name: Run ESLint
           command: npm run lint
