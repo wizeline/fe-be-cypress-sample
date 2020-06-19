@@ -16,12 +16,12 @@ class ChannelPage {
     return cy.get('[data-qa="message-pane-input-preview-join-channel"]');
   }
 
-  inputMessageContent() {
-    return cy.get('.p-rich_text_section');
-  }
-
   lblChannelName() {
     return cy.get('[data-qa="channel_name"]');
+  }
+
+  lblLastMessage() {
+    return cy.get('[data-qa="block-kit-renderer"]').last();
   }
 
   sendMessage(message) {
@@ -29,8 +29,8 @@ class ChannelPage {
     this.btnSendMessageButton().click();
   }
 
-  getMessageSent(callback) {
-    this.inputMessageContent().then((selector) => {
+  getLastMessage(callback) {
+    this.lblLastMessage().then((selector) => {
       callback(selector.text());
     });
   }
