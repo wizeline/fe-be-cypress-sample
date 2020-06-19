@@ -643,7 +643,7 @@
               "urlencoded": [
                 {
                   "key": "presence",
-                  "value": "away",
+                  "value": "auto",
                   "type": "text"
                 }
               ]
