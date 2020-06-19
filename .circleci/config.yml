@@ -42,9 +42,6 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
-          name: Install Reporter
-          command: npm install mochawesome --save-dev
-      - run:
           name: Run Tests
           command: npm run test
 
