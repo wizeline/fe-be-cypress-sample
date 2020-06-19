@@ -25,6 +25,9 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
+      - run:
+          name: Install Reporter
+          command: npm install mochawesome --save-dev
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
