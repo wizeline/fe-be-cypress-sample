@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2020-06-18T22:46:19.256Z",
+    "end": "2020-06-18T22:46:28.114Z",
+    "duration": 8858,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a2002fad-586e-44ed-9f0d-c474f3214e85",
+      "title": "",
+      "fullFile": "cypress/integration/Messages/MessagesTest.js",
+      "file": "cypress/integration/Messages/MessagesTest.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "04bdd182-d930-4878-935d-df3438c7cb08",
+          "title": "Test Cases regarding the Sending/Updating/Deleting Messages Functionality",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Send message",
+              "fullTitle": "Test Cases regarding the Sending/Updating/Deleting Messages Functionality Send message",
+              "timedOut": null,
+              "duration": 6642,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "var channelPage = new _ChannelPage[\"default\"]();\nvar message = faker.random.word(); // Use faker js to send random messages.\nchannelPage.sendMessage(message);\nchannelPage.getMessageSent(function (incommingText) {\n  expect(incommingText).to.be.equal(message); // Check that the message matches with the one specified\n});",
+              "err": {
+                "message": "AssertionError: expected 'purpleBuckinghamshiredepositconnectSteel' to equal 'Steel'",
+                "estack": "AssertionError: expected 'purpleBuckinghamshiredepositconnectSteel' to equal 'Steel'\n    at eval (https://app.slack.com/__cypress/tests?p=cypress/integration/Messages/MessagesTest.js:197:35)\n    at Context.eval (https://app.slack.com/__cypress/tests?p=cypress/integration/Messages/MessagesTest.js:61:9)",
+                "diff": "- 'purpleBuckinghamshiredepositconnectSteel'\n+ 'Steel'\n"
+              },
+              "uuid": "042d88c1-e1fc-4932-a376-9a327edff435",
+              "parentUUID": "04bdd182-d930-4878-935d-df3438c7cb08",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "042d88c1-e1fc-4932-a376-9a327edff435"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 6642,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.1.0"
+    }
+  }
+}
