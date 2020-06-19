@@ -44,7 +44,7 @@ jobs:
       - run:
           name: Install Reporter
           command: npm install mochawesome --save-dev
-      -run:
+      - run:
           name: Run Backend Tests
           command: npm run test:backend
       - run:
@@ -61,7 +61,7 @@ workflows:
           requires:
             - Run_Lint
           filters: *pr-review_filters
-  
+
   post-commit-checks_production:
     jobs:
       - Run_Lint:
