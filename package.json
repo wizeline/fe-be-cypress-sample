@@ -22,8 +22,8 @@
     "prettier": "^1.19.1"
   },
   "scripts": {
-    "test": "./node_modules/.bin/cypress run",
-    "test:slack": "cypress run --record --key 2ba8ca12-6a48-4e47-b821-30f1587790e2",
+    "test": "./node_modules/.bin/cypress run ",
+    "test:ci": "./node_modules/.bin/cypress run --record --key 2ba8ca12-6a48-4e47-b821-30f1587790e2 --parallel",
     "open-test": "./node_modules/.bin/cypress open",
     "test:backend": "cd cypress && newman run backend/qa-slack-poc.postman_collection.json -e backend/slackEnvironment.postman_environment.json",
     "lint": "eslint . -c .eslintrc.json --ext js"

@@ -18,8 +18,8 @@ describe('Test Cases regarding the Sending/Updating/Deleting Messages Functional
     const channelPage = new ChannelPage();
     const message = faker.random.word(); // Use faker js to send random messages.
     channelPage.sendMessage(message);
-    channelPage.getMessageSent((incommingText) => {
-      expect(incommingText).to.be.equal(message); // Check that the message matches with the one specified
+    channelPage.getLastMessage((incommingText) => {
+      expect(incommingText).to.be.equal(message); // Check that the last message matches with the one specified
     });
   });
 });
