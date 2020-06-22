@@ -1873,7 +1873,7 @@
                 },
                 {
                   "key": "name",
-                  "value": "new{{$randomAlphaNumeric}}",
+                  "value": "new{{$randomAlphaNumeric}}{{$randomAdjective}}",
                   "type": "text"
                 }
               ]
