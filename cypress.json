@@ -10,5 +10,6 @@
   "viewportWidth": 1280,
   "viewportHeight": 720,
   "chromeWebSecurity": false,
+  "baseUrl": "https://zoam21.slack.com/",
   "projectId": "m3cjz8"
 }

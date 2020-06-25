@@ -8,11 +8,7 @@ import ChannelBrowser from '../../Pages/Channels/ChannelBrowser';
 import ChannelPage from '../../Pages/Channels/ChannelPage';
 import LoginPage from '../../Pages/Login/LoginPage';
 import BaseTest from '../../Utils/BaseTest';
-import {
-  SLACK_URL,
-  LOGIN_USERNAME,
-  LOGIN_PASSWORD,
-} from '../../Utils/Constants';
+import { LOGIN_USERNAME, LOGIN_PASSWORD } from '../../Utils/Constants';
 
 describe('Test Cases regarding the Channel Functionality', () => {
   const additionalOptionsForChannelModal = new AdditionaOptionsForChannelModal();
@@ -28,12 +24,17 @@ describe('Test Cases regarding the Channel Functionality', () => {
   let userName;
   let channelName;
 
-  beforeEach(() => {
-    cy.visit(SLACK_URL);
+  before(() => {
+    cy.visit('/');
     new LoginPage().loginToSlack(LOGIN_USERNAME, LOGIN_PASSWORD);
+    baseTest.updateBaseUrl();
     cy.fixture('Users').then((user) => {
       userName = user.slack_users; // Gets from JSON file the array of users to add to a channel
     });
+  });
+
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce('x', 'd-l', 'd', 'd-s', 'lc');
     channelName = `-cyp-${String(new Date().getTime())}`;
     // Remove previous channels from list
     baseTest.deleteAllAutomationCreatedChannelsFromLeftNavigationBar();

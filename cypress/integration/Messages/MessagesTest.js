@@ -1,17 +1,15 @@
 import LoginPage from '../../Pages/Login/LoginPage';
 import ChannelPage from '../../Pages/Channels/ChannelPage';
-import {
-  SLACK_URL,
-  LOGIN_USERNAME,
-  LOGIN_PASSWORD,
-} from '../../Utils/Constants';
+import { LOGIN_USERNAME, LOGIN_PASSWORD } from '../../Utils/Constants';
+import BaseTest from '../../Utils/BaseTest';
 
 const faker = require('faker');
 
 describe('Test Cases regarding the Sending/Updating/Deleting Messages Functionality', () => {
   before(() => {
-    cy.visit(SLACK_URL);
+    cy.visit('/');
     new LoginPage().loginToSlack(LOGIN_USERNAME, LOGIN_PASSWORD);
+    new BaseTest().updateBaseUrl();
   });
 
   it('Send message', () => {

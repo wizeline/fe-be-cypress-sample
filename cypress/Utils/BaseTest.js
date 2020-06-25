@@ -34,9 +34,22 @@ class BaseTest {
         channelDetailsPanel.openChannelAdditionalOptionsModal();
         additionalOptionsForChannelModal.clickOnDeleteChannel();
         deleteChannelSubModal.deleteChannel();
-        channelPage.closeChannelDetailsPanel(); // Just to add some time to allow the channel to stop being shown
+        channelPage.closeChannelDetailsPanel(); // To reset the state of the channel
       }
     });
+  }
+
+  updateBaseUrl() {
+    let newURL = null;
+    cy.url().then((currentURL) => {
+      newURL = currentURL.split('/');
+      newURL[newURL.length - 1] = null;
+      Cypress.config('baseUrl', newURL.join('/'));
+    });
+  }
+
+  openURLPath(incommingURLPath) {
+    cy.visit(incommingURLPath);
   }
 }
 export default BaseTest;

@@ -51,6 +51,7 @@ jobs:
           name: Run E2E Tests
           command: npm run test:ci
 
+
 workflows:
   version: 2
   pre-commit-checks:
@@ -61,7 +62,7 @@ workflows:
           requires:
             - Run_Lint
           filters: *pr-review_filters
-
+  
   post-commit-checks_production:
     jobs:
       - Run_Lint:
