@@ -10,5 +10,7 @@
   "viewportWidth": 1280,
   "viewportHeight": 720,
   "chromeWebSecurity": false,
-  "projectId": "m3cjz8"
+  "projectId": "m3cjz8",
+  "screenshotsFolder": "cypress/snapshots/actual",
+  "trashAssetsBeforeRuns": true
 }

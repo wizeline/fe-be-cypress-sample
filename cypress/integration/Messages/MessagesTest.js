@@ -12,6 +12,7 @@ describe('Test Cases regarding the Sending/Updating/Deleting Messages Functional
   before(() => {
     cy.visit(SLACK_URL);
     new LoginPage().loginToSlack(LOGIN_USERNAME, LOGIN_PASSWORD);
+    cy.compareSnapshot('home');
   });
 
   it('Send message', () => {
