@@ -11,5 +11,7 @@
   "viewportHeight": 720,
   "chromeWebSecurity": false,
   "baseUrl": "https://zoam21.slack.com/",
-  "projectId": "m3cjz8"
+  "projectId": "m3cjz8",
+  "screenshotsFolder": "cypress/snapshots/actual",
+  "trashAssetsBeforeRuns": true
 }

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "cypress": "^4.8.0",
+    "cypress-visual-regression": "^1.3.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.11.0",
@@ -24,8 +25,9 @@
   "scripts": {
     "test": "./node_modules/.bin/cypress run ",
     "test:ci": "./node_modules/.bin/cypress run --record --key 2ba8ca12-6a48-4e47-b821-30f1587790e2 --parallel",
-    "open-test": "./node_modules/.bin/cypress open",
+    "test:open": "./node_modules/.bin/cypress open",
     "test:backend": "cd cypress && newman run backend/qa-slack-poc.postman_collection.json -e backend/slackEnvironment.postman_environment.json",
+    "visual:regression": "./node_modules/.bin/cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base && ./node_modules/.bin/cypress run --env type=actual",
     "lint": "eslint . -c .eslintrc.json --ext js"
   },
   "repository": {
