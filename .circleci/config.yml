@@ -24,7 +24,7 @@ jobs:
           key: dependency-cache-{{ checksum "cypress.json" }}
       - run:
           name: Replace Keys
-          command: bash echo $CYPRESS_SLACK_URL
+          command: echo $CYPRESS_SLACK_URL
       - save_cache:
           key: dependency-cache-{{ checksum "cypress.json" }}
           paths:
