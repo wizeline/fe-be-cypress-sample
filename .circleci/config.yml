@@ -73,11 +73,16 @@ workflows:
     jobs:
       - Run_Lint:
           filters: *pr-review_filters
+      - Replace_Keys:
+        requires:
+          - Run_Lint
+        filters: *pr-review_filters
       - Run_Tests:
           requires:
             - Run_Lint
             - Replace_Keys
           filters: *pr-review_filters
+
   
   post-commit-checks_production:
     jobs:
