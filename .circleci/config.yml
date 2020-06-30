@@ -74,9 +74,9 @@ workflows:
       - Run_Lint:
           filters: *pr-review_filters
       - Replace_Keys:
-        requires:
-          - Run_Lint
-        filters: *pr-review_filters
+          requires:
+            - Run_Lint
+          filters: *pr-review_filters
       - Run_Tests:
           requires:
             - Run_Lint
