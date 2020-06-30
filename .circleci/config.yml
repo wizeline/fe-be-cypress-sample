@@ -21,12 +21,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "cypress.json" }}
       - run:
           name: Replace Keys
           command: bash cypress/Utils/PreTest.sh
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "cypress.json" }}
           paths:
             - ~/.npm
             - ~/.cache
@@ -36,12 +36,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "cypress.json" }}
       - run:
           name: Install Dependencies
           command: npm ci
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "cypress.json" }}
           paths:
             - ~/.npm
             - ~/.cache
@@ -55,7 +55,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "cypress.json" }}
       - run:
           name: Install Reporter
           command: npm install mochawesome --save-dev
