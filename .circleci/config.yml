@@ -25,21 +25,24 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
+      - run:
+          name: Run ESLint
+          command: npm run lint
       - save_cache:
           key: dependency-cache-{{ checksum "cypress.json" }}
           paths:
             - ~/.npm
             - ~/.cache
-      - run:
-          name: Run ESLint
-          command: npm run lint
-
+            
   Run_Backend_Tests:
     <<: *default_config
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "cypress.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm ci
       - run:
           name: Populate Backend Keys
           command: bash cypress/Utils/PreTest.sh
@@ -49,7 +52,7 @@ jobs:
       - persist_to_workspace:
           root: ./
           paths:
-            - cypress/backend      
+            - backend      
       - save_cache:
           key: dependency-cache-{{ checksum "cypress.json" }}
           paths:
