@@ -16,25 +16,6 @@ production_filters: &production_filters
       - master
 
 jobs:
-  Populate_Backend_Keys:
-    <<: *default_config
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "cypress.json" }}
-      - run:
-          name: Populate Backend Keys
-          command: bash cypress/Utils/PreTest.sh
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - cypress/backend      
-      - save_cache:
-          key: dependency-cache-{{ checksum "cypress.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
-
   Run_Lint:
     <<: *default_config
     steps:
@@ -53,7 +34,29 @@ jobs:
           name: Run ESLint
           command: npm run lint
 
-  Run_Tests:
+  Run_Backend_Tests:
+    <<: *default_config
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "cypress.json" }}
+      - run:
+          name: Populate Backend Keys
+          command: bash cypress/Utils/PreTest.sh
+      - run:
+          name: Run Backend Tests
+          command: npm run test:backend
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - cypress/backend      
+      - save_cache:
+          key: dependency-cache-{{ checksum "cypress.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+
+  Run_E2E_Tests:
     <<: *default_config
     parallelism: 8
     steps:
@@ -64,12 +67,8 @@ jobs:
           name: Install Reporter
           command: npm install mochawesome --save-dev
       - run:
-          name: Run Backend Tests
-          command: npm run test:backend
-      - run:
           name: Run E2E Tests
           command: npm run test:ci
-
 
 workflows:
   version: 2
@@ -77,14 +76,14 @@ workflows:
     jobs:
       - Run_Lint:
           filters: *pr-review_filters
-      - Populate_Backend_Keys:
+      - Run_Backend_Tests:
           requires:
             - Run_Lint
           filters: *pr-review_filters
-      - Run_Tests:
+      - Run_E2E_Tests:
           requires:
             - Run_Lint
-            - Populate_Backend_Keys
+            - Run_Backend_Tests
           filters: *pr-review_filters
 
   
