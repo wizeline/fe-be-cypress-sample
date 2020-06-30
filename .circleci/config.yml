@@ -2,7 +2,7 @@ version: 2
 
 default_config: &default_config
   docker:
-    - image: circleci/node:latest-browsers
+    - image: cypress/base:10.0.0
   working_directory: ~/qa-slack-poc
 
 pr-review_filters: &pr-review_filters
