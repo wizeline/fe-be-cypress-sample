@@ -10,7 +10,6 @@
   "viewportWidth": 1280,
   "viewportHeight": 720,
   "chromeWebSecurity": false,
-  "baseUrl": "$CYPRESS_SLACK_URL",
   "projectId": "$CYPRESS_PROJECT_ID",
   "screenshotsFolder": "cypress/snapshots/actual",
   "trashAssetsBeforeRuns": true
