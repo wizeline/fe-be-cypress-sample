@@ -24,7 +24,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/cypress run ",
-    "test:ci": "./node_modules/.bin/cypress run --record --key $CYPRESS_DASHBOARD_KEY --parallel",
+    "test:ci": "./node_modules/.bin/cypress run --record --parallel",
     "test:open": "./node_modules/.bin/cypress open",
     "test:backend": "cd cypress && newman run backend/qa-slack-poc.postman_collection.json -e backend/slackEnvironment.postman_environment.json",
     "visual:regression": "./node_modules/.bin/cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base && ./node_modules/.bin/cypress run --env type=actual",
