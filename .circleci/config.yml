@@ -21,7 +21,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "cypress.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
           command: npm ci
@@ -29,32 +29,25 @@ jobs:
           name: Run ESLint
           command: npm run lint
       - save_cache:
-          key: dependency-cache-{{ checksum "cypress.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ~/.npm
             - ~/.cache
-            
+
   Run_Backend_Tests:
     <<: *default_config
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "cypress.json" }}
-      - run:
-          name: Install Dependencies
-          command: npm ci
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Populate Backend Keys
           command: bash cypress/Utils/PreTest.sh
       - run:
           name: Run Backend Tests
-          command: npm run test:backend
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - backend      
+          command: npm run test:backend   
       - save_cache:
-          key: dependency-cache-{{ checksum "cypress.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ~/.npm
             - ~/.cache
@@ -65,10 +58,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "cypress.json" }}
-      - run:
-          name: Install Reporter
-          command: npm install mochawesome --save-dev
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Run E2E Tests
           command: npm run test:ci
