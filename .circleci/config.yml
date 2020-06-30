@@ -16,15 +16,19 @@ production_filters: &production_filters
       - master
 
 jobs:
-  Replace_Keys:
+  Populate_Backend_Keys:
     <<: *default_config
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "cypress.json" }}
       - run:
-          name: Replace Keys
-          command: echo $CYPRESS_SLACK_URL
+          name: Populate Backend Keys
+          command: bash cypress/Utils/PreTest.sh
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - cypress/backend      
       - save_cache:
           key: dependency-cache-{{ checksum "cypress.json" }}
           paths:
@@ -73,14 +77,14 @@ workflows:
     jobs:
       - Run_Lint:
           filters: *pr-review_filters
-      - Replace_Keys:
+      - Populate_Backend_Keys:
           requires:
             - Run_Lint
           filters: *pr-review_filters
       - Run_Tests:
           requires:
             - Run_Lint
-            - Replace_Keys
+            - Populate_Backend_Keys
           filters: *pr-review_filters
 
   
